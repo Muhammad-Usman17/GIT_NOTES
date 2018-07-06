@@ -1,35 +1,64 @@
 import * as types from './actionTypes';
 import gistApis from '../../api/gistApis';
 
-export function AccessTokenSuccess(userdata) {
-  return {type: types.ACCESS_TOKEN_SUCCESS, userdata};
+export function gistOk() {
+  return function(dispatch) {
+    dispatch({
+      type: "CREATE_GIST_OK"
+    });
+  }
 }
 
-// export const login = (data) => {
-//   return () => {
-//     return sessionApi.login(user).then(response => {
-//       const { token } = response;
-//       sessionService.saveSession({ token })
-//       .then(() => {
-//         sessionService.saveUser(response.data)
-//         .then(() => {
-//           browserHistory.replace('/');
-//         });
-//       });
-//     });
-//   };
-// };
 
 export function createGist(data) {
  
   return function(dispatch) {
+   
     return gistApis.addGist(data).then(response => {
-     
-    console.log('reponse', response)
+      dispatch({
+        type: "CREATE_GIST_SUCCESS"
+      });
+      return gistApis.getGists(data).then(gists => {
+        dispatch({
+          type: "GIST_LIST_SUCCESS",
+          payload: gists
+        });
+        dispatch({
+          type: "CREATE_GIST_OK"
+        });
+        }).catch(error => {
+        dispatch({
+          type: "GIST_LIST_FAILED",
+          payload: error
+        });
+    })
+    
       }).catch(error => {
-        throw(error);
+        dispatch({
+          type: "CREATE_GIST_FAILED",
+          payload:error
+        });
       });
     
   };
 }
+
+export function gistList(data) {
+  return function(dispatch) {
+  return gistApis.getGists(data).then(gists => {
+    dispatch({
+      type: "GIST_LIST_SUCCESS",
+      payload: gists
+    });
+
+    }).catch(error => {
+    dispatch({
+      type: "GIST_LIST_FAILED",
+      payload: error
+    });
+})
+}
+}
+
+
 

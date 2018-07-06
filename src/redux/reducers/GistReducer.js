@@ -1,15 +1,34 @@
-import * as types from '../actions/actionTypes';
+
 import initialState from './initialState';
 
 
 
-export default function GistReducer(state = initialState.gists, action) {
-  switch(action.type) {
+export default function GistReducer(state = initialState, action) {
 
-     case types.GET_ALL_GIST:
-          console.log("User Details: ",action.gists)
-      return action.gists
-    default: 
-      return state;
+      switch (action.type) {
+        case "CREATE_GIST_SUCCESS": {
+          return {...state, created: true}
+        }
+        case "CREATE_GIST_FAILED": {
+          return {...state, created: false, error_create: action.payload}
+        }
+        case "CREATE_GIST_OK": {
+          return {...state, created: false}
+        }
+        case "GIST_LIST_SUCCESS": {
+          return {
+            ...state,
+            gists: action.payload
+          }
+        }
+        case "GIST_LIST_FAILED": {
+          return {
+            ...state,
+            error_list:action.payload
+          }
+        }
+       
+      }
+  
+      return state
   }
-}

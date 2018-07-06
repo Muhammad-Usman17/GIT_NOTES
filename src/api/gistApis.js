@@ -8,39 +8,43 @@ const CLIENT_SECRET = 'a8a4f41239977d07809995e21adf4d2b70c4e4df'
 class gistApis {
 
   static addGist(input) {
-    let data= {
-        
+    let data = {
       'description': input.description,
       'public': true,
-      'files':
-      {
-        [input.name]:{
-          'content':"this is content "
+      'files': {
+        [input.name]: {
+          'content': "this is content "
         }
-
       }
-      
-      }
+    }
     let config = {
       headers: {
         'Access-Control-Allow-Origin': '*'
       },
-      
-       
-      
-    
-  };
-    return axios.post(`${PROXY_URL}${BASE_URL}gists?client_id=${CLIENT_ID}&access_token=` + input.token,data, config)
+    }
+    return axios.post(`${PROXY_URL}${BASE_URL}gists?client_id=${CLIENT_ID}&access_token=` + input.token, data, config)
       .then(response => {
-     console.log(response.data)
+        console.log(response.data)
         return response;
       }).catch(error => {
         console.log("Error: ", error)
         return error;
       });
   }
-  static updateGist(data) {
- 
+  static getGists(data) {
+    let config = {
+      headers: {
+        'Access-Control-Allow-Origin': '*'
+      }
+    };
+    return axios.get(`${PROXY_URL}https://api.github.com/users/`+data.username+`/gists?client_id=${CLIENT_ID}&access_token=` + data.token, config)
+      .then(response => {
+        let gists = response.data;
+        return gists;
+      }).catch(error => {
+        console.log("Error: ", error)
+        return error;
+      });
   }
   static deleteGist(data) {
  

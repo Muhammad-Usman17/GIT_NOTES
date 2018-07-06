@@ -1,6 +1,6 @@
 export default {
-  gists: [],
-  token:null,
-  userdata:null
-  
+  gists:[],
+  created: false,
+  error_create: null,
+  error_list:null
 }
