@@ -16,20 +16,19 @@ export function login(data) {
           data: {
             email: user.email,
             name: user.name,
+            username:user.login,
             photo: user.avatar_url
           }}
           sessionService.saveSession( userdata.Accesstoken )
           .then(() => {
             sessionService.saveUser(userdata.data)
-            .then(() => {
-              history.replace('/');
-            });
+            
           });
       }).catch(error => {
         throw(error);
       });
     }).catch(error => {
-      history.replace('/signIn');
+      history.replace('/');
       throw(error);
     });
   };

@@ -1,6 +1,5 @@
 export default {
-  gists: [],
-  token:null,
-  userdata:null
-  
+  notebooks: [],
+  notebook:{},
+  note:{}   
 }

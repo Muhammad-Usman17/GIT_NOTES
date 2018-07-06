@@ -5,12 +5,11 @@ import getOr from 'lodash/fp/getOr'
 import { sessionService } from 'redux-react-session';
 
 // src
-import HomeInner from './HomeInner'
+import SearchInner from './SearchInner'
 import { logout,createGist } from '../../redux/actions';
-import history from '../../utils/history'
-import { access } from 'fs';
 
-class Home extends Component {
+
+class Search extends Component {
  constructor()
  {super();
   this.state = {
@@ -18,14 +17,6 @@ class Home extends Component {
   }
   
  }
-//  componentWillMount()
-//  {
-//   const authenticated= this.props
-//   if (!authenticated)
-//   {
-//     history.replace('/signIn');
-//   }
-//  }
  componentDidMount(){
   sessionService.loadSession().then((result) => {
      return result.tok;
@@ -35,12 +26,7 @@ class Home extends Component {
   });
 }
  
-handleChangeName = event => {
-  this.setState({ name: event.target.value });
-};
-handleChangeDescription = event => {
-  this.setState({ description: event.target.value });
-};
+
   handleClickSignOut = () => {
     const {
       dispatch
@@ -54,13 +40,15 @@ handleChangeDescription = event => {
     } = this.props
     const token=this.state.token;
     
-    dispatch(createGist({name:this.state.name,description:this.state.description,token:token}));
+    dispatch(createGist({name:'sadain.txt',description:'i m chacha',token:token}));
   }
 
-
+  newMethod() {
+    return this;
+  }
 
   render() {
-    return <HomeInner handleChangeName = { this.handleChangeName  } handleChangeDescription ={this.handleChangeDescription} onClickSignout = { this.handleClickSignOut  } onClickGist= { this.handleCreateGist  }  user={this.props.user}  authenticated={this.props.authenticated} 
+    return <SearchInner onClickSignout = { this.handleClickSignOut  } onClickGist= { this.handleCreateGist  }  user={this.props.user}  authenticated={this.props.authenticated} 
     />
   }
 }
@@ -80,4 +68,4 @@ function mapStateToProps(state, ownProps) {
 }
 
 
-export default connect(mapStateToProps)(Home);
+export default connect(mapStateToProps)(Search);

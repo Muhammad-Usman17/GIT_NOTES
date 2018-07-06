@@ -1,16 +1,25 @@
 import React from 'react'
 import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
 
-const HomeInnner = ({ onClickSignout ,onClickGist, user, authenticated }) => (
+const HomeInnner = ({ handleChangeName,handleChangeDescription ,onClickGist, user, authenticated }) => (
     <div>
-      <h3>Welcome {user.name}</h3>
-      <img src={user.photo}></img>
-      <h5>{authenticated ? 'You are authenticated :)' : 'Error'}</h5>
-      <Button onClick={onClickSignout}>
-        SignOut
-      </Button>
+      
+     
+      <TextField
+          id="name"
+          label="Gist name"
+          onChange={handleChangeName}
+          margin="normal"
+        />
+         <TextField
+          id="description"
+          label="Description"
+          onChange={handleChangeDescription}
+          margin="normal"
+        />
       <Button onClick={onClickGist}>
-        SignOut
+        Create Gist
       </Button>
     </div>
   );
