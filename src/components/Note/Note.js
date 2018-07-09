@@ -6,49 +6,67 @@ import { sessionService } from 'redux-react-session';
 
 // src
 import NoteInner from './NoteInner'
-import { logout,createGist } from '../../redux/actions';
+import { NoteOperation,getSingleGist } from '../../redux/actions';
 
 
 class Note extends Component {
  constructor()
  {super();
   this.state = {
-    token: ''
+    token: '',
+    gistId:''
   }
   
  }
+ handleChangeName = event => {
+  this.setState({
+    name: event.target.value
+  });
+}
+ handleChangeContent = event => {
+  this.setState({
+    content: event.target.value
+  });
+}
+handleCreateNote = () => {
+  const {
+    dispatch,
+    user
+  } = this.props
+  const token = this.state.token;
+  const id= this.props.match.params.id
+  dispatch(NoteOperation(id,{
+    name: this.state.name,
+    content:this.state.content,
+    filename:this.state.name,
+    token: token
+  }));
+
+}
  componentDidMount(){
+
   sessionService.loadSession().then((result) => {
      return result.tok;
   })
   .then((response) => {
      this.setState({ token:response});
   });
+ const id= this.props.match.params.id
+ const {
+  dispatch
+} = this.props
+dispatch(getSingleGist(id));
 }
  
 
-  handleClickSignOut = () => {
-    const {
-      dispatch
-    } = this.props
-    dispatch(logout());
-    
-  }
-  handleCreateGist = () => {
-    const {
-      dispatch
-    } = this.props
-    const token=this.state.token;
-    
-    dispatch(createGist({name:'sadain.txt',description:'i m chacha',token:token}));
-  }
 
+  
   newMethod() {
     return this;
   }
 
   render() {
-    return <NoteInner onClickSignout = { this.handleClickSignOut  } onClickGist= { this.handleCreateGist  }  user={this.props.user}  authenticated={this.props.authenticated} 
+    return <NoteInner handleChangeContent={this.handleChangeContent }handleChangeName={this.handleChangeName} onCreateNote={this.handleCreateNote}  props={this.props} 
     />
   }
 }
@@ -57,13 +75,15 @@ class Note extends Component {
 
 function mapStateToProps(state, ownProps) {
  
-  
-  const user = getOr('', 'session.user')(state)
-  const authenticated = getOr('', 'session.authenticated')(state)
-  
+  const gist = getOr({}, 'notes.note')(state)
+  const description=getOr('', 'notes.note.description')(state)
+  const owner=getOr('', 'notes.note.owner.login')(state)
+  const lastUpdated=getOr('', 'notes.note.updated_at')(state)
+  const note=getOr({}, 'notes.note.files')(state)
+  const notes = note=={}?[]: Object.values(note);
+
   return {
-    user,
-    authenticated
+    gist,description,owner,lastUpdated,notes,note
   };
 }
 

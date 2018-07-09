@@ -1,17 +1,42 @@
+//lib
 import React from 'react'
 import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardContent from '@material-ui/core/CardContent';
 
-const NoteInnner = ({ onClickSignout ,onClickGist, user, authenticated }) => (
+
+
+// src
+
+import NoteBookDetail from '../Reuseable/NotebookDetail';
+import NoteList from '../Reuseable/NoteList';
+import './Note.css';
+
+const NoteInnner = ({ handleChangeContent,handleChangeName,props ,onCreateNote}) => (
     <div>
-      <h3>Welcome {user.name}</h3>
-      <img src={user.photo}></img>
-      <h5>{authenticated ? 'You are authenticated :)' : 'Error'}</h5>
-      <Button onClick={onClickSignout}>
-        SignOut
-      </Button>
-      <Button onClick={onClickGist}>
-        SignOut
-      </Button>
+       <Card className="Note-Card">
+      <CardHeader className="Note-Card-Header"
+         title="Create Notebook" />
+      <CardContent className="Note-CreateDiv">
+         <TextField
+            id="name"
+            label="Note name"
+            onChange={handleChangeName}
+            margin="normal"/>
+         <TextField
+            id="content"
+            label="content"
+            onChange={handleChangeContent}
+            margin="normal"/>
+         <Button onClick={onCreateNote} variant="outlined" color="primary">
+         Create Gist
+         </Button>
+      </CardContent>
+   </Card>
+   <NoteBookDetail props={props}></NoteBookDetail>
+  <NoteList props={props}></NoteList>
     </div>
   );
   

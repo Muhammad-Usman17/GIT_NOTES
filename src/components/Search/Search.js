@@ -6,49 +6,34 @@ import { sessionService } from 'redux-react-session';
 
 // src
 import SearchInner from './SearchInner'
-import { logout,createGist } from '../../redux/actions';
+import { getSingleGist } from '../../redux/actions';
 
 
 class Search extends Component {
- constructor()
- {super();
-  this.state = {
-    token: ''
-  }
-  
- }
- componentDidMount(){
-  sessionService.loadSession().then((result) => {
-     return result.tok;
-  })
-  .then((response) => {
-     this.setState({ token:response});
-  });
-}
- 
 
-  handleClickSignOut = () => {
+  handleChangeId = event => {
+    this.setState({
+      id: event.target.value
+    });
+  }
+  handleSearch = () => {
     const {
       dispatch
     } = this.props
-    dispatch(logout());
-    
-  }
-  handleCreateGist = () => {
-    const {
-      dispatch
-    } = this.props
-    const token=this.state.token;
-    
-    dispatch(createGist({name:'sadain.txt',description:'i m chacha',token:token}));
+    dispatch(getSingleGist(this.state.id));
   }
 
-  newMethod() {
-    return this;
-  }
 
   render() {
-    return <SearchInner onClickSignout = { this.handleClickSignOut  } onClickGist= { this.handleCreateGist  }  user={this.props.user}  authenticated={this.props.authenticated} 
+    return <SearchInner onClickSearch = {
+      this.handleSearch
+    }
+    props = {
+      this.props
+    }
+    onIdChange = {
+      this.handleChangeId
+    }
     />
   }
 }
@@ -57,15 +42,15 @@ class Search extends Component {
 
 function mapStateToProps(state, ownProps) {
  
-  
-  const user = getOr('', 'session.user')(state)
-  const authenticated = getOr('', 'session.authenticated')(state)
-  
+  const gist = getOr({}, 'search.single_gist')(state)
+  const description=getOr('', 'search.single_gist.description')(state)
+  const owner=getOr('', 'search.single_gist.owner.login')(state)
+  const lastUpdated=getOr('', 'search.single_gist.updated_at')(state)
+  const note=getOr({}, 'search.single_gist.files')(state)
+  const notes = note=={}?[]: Object.values(note);
+
   return {
-    user,
-    authenticated
+    gist,description,owner,lastUpdated,notes,note
   };
 }
-
-
 export default connect(mapStateToProps)(Search);

@@ -23,7 +23,7 @@ ReactDOM.render(
         <Switch>   
             <Route exact path="/" RouteonEnter={sessionService.checkAuth} component={SignIn} />
             <Route exact path="/search" RouteonEnter={sessionService.checkAuth} component={Search} />
-            <Route  path="/dashboard"  RouteonEnter={sessionService.checkAuth} component={App} />
+            <Route path="/dashboard"  RouteonEnter={sessionService.checkAuth} component={App} />
             <Redirect to="/" />
         </Switch>
 </Router>

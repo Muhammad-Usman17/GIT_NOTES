@@ -41,7 +41,7 @@ export const logout = () => {
 
       console.log("logout is called");
     }).catch(err => {
-    ;
+    
       console.log("error am called");
 
     });

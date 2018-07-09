@@ -5,7 +5,7 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
-import { withStyles } from "@material-ui/core/styles";
+
 
 
 
@@ -14,7 +14,7 @@ import { withStyles } from "@material-ui/core/styles";
 // src
 import './App.css';
 import Home from '../Home';
-import NoteBook from '../NoteBook';
+import Note from '../Note';
 import { Button } from '@material-ui/core';
 
 
@@ -53,7 +53,7 @@ const AppInnner = ({token,onClickSignout , user, authenticated, props }) => (
     <div >
     <Switch>
     <Route token={token} path={props.match.path} exact RouteonEnter={sessionService.checkAuth} component={Home} />
-    <Route token={token} path={`${props.match.path}/notebook`} exact  RouteonEnter={sessionService.checkAuth} component={NoteBook} />
+    <Route token={token} path={`${props.match.path}/notebook/:id`} exact  RouteonEnter={sessionService.checkAuth} component={Note} />
     <Redirect to="/dashboard" />
     </Switch>
     </div>

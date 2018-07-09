@@ -1,20 +1,36 @@
 import React from 'react'
 import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import Card from '@material-ui/core/Card';
 
-const HomeInnner = ({ onClickSignout ,onClickGist, user, authenticated }) => (
-    <div>
-      <h3>Welcome this is search{user.name}</h3>
-      <img src={user.photo}></img>
-      <h5>{authenticated ? 'You are authenticated :)' : 'Error'}</h5>
-      <Button onClick={onClickSignout}>
-        SignOut
+
+
+
+// src
+import './Search.css';
+import NoteBookDetail from '../Reuseable/NotebookDetail';
+import NoteList from '../Reuseable/NoteList';
+const SearchInner = ({onClickSearch ,onIdChange,props}) => (
+<div>
+   <Card className="Search-Div">
+      <TextField
+         className="Search-TextBox"
+         id="Id"
+         label="Enter Gist Id"
+         onChange={onIdChange}
+         margin="normal"/>
+      <Button onClick={onClickSearch}   className="Search-Button" variant="outlined" color="primary">
+      Search
       </Button>
-      <Button onClick={onClickGist}>
-        SignOut
-      </Button>
-    </div>
+   </Card>
+  <NoteBookDetail props={props}></NoteBookDetail>
+  <NoteList props={props}></NoteList>
+   
+</div>
+
+
   );
   
-export default HomeInnner
+export default SearchInner
 
 

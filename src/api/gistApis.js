@@ -39,26 +39,71 @@ class gistApis {
     };
     return axios.get(`${PROXY_URL}https://api.github.com/users/`+data.username+`/gists?client_id=${CLIENT_ID}&access_token=` + data.token, config)
       .then(response => {
-        let gists = response.data;
-        return gists;
+       
+        return  response;
       }).catch(error => {
         console.log("Error: ", error)
         return error;
       });
   }
   static deleteGist(data) {
+    let config = {
+      headers: {
+        'Access-Control-Allow-Origin': '*'
+      }
+    };
+    return axios.delete(`${PROXY_URL}https://api.github.com/gists/`+data.gistid+`?client_id=${CLIENT_ID}&access_token=` + data.token, config)
+      .then(response => {
+        return response.data;
+      }).catch(error => {
+        console.log("Error: ", error)
+        return error;
+      });
  
   }
 
-  static addNotes(data) {
- 
+  static serachSingleGistById(gistId) {
+    let config = {
+      headers: {
+        'Access-Control-Allow-Origin': '*'
+      }
+    };
+    return axios.get(`${PROXY_URL}https://api.github.com/gists/` + gistId, config)
+      .then(response => {
+       
+        return  response;
+      }).catch(error => {
+        console.log("Error: ", error)
+        return error;
+      });
   }
-  static updateNotes(data) {
- 
+  static editNotebook(gistId,Input) {
+    let config = {
+      headers: {
+        'Access-Control-Allow-Origin': '*'
+      }
+    };
+    let data = {
+
+      'description':"",
+      "public": true,
+      'files': {
+        [Input.name]: {
+          'content': Input.content
+        }
+      }
+    }
+    console.log(data);
+    return axios.patch(`${PROXY_URL}https://api.github.com/gists/` + gistId+`?client_id=${CLIENT_ID}&access_token=` + Input.token,data, config)
+      .then(response => {
+       
+        return  response;
+      }).catch(error => {
+        console.log("Error: ", error)
+        return error;
+      });
   }
-  static deleteNotes(data) {
  
-  }
   
   
 }
