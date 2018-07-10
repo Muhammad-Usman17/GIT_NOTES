@@ -7,7 +7,6 @@ export const NOTEBOOK_LIST_SUCCESS = 'NOTEBOOK_LIST_SUCCESS';
 export const NOTEBOOK_LIST_FAILED = 'NOTEBOOK_LIST_FAILED';
 export const NOTEBOOK_DELETE_SUCCESS = 'NOTEBOOK_DELETE_SUCCESS';
 export const NOTEBOOK_DELETE_OK = 'NOTEBOOK_DELETE_OK';
-
 export const NOTEBOOK_DELETE_FAILED = 'NOTEBOOK_DELETE_FAILED';
 export const SINGLE_NOTEBOOK_SUCCESS = 'SINGLE_NOTEBOOK_SUCCESS';
 export const SINGLE_NOTEBOOK_FAILED = 'SINGLE_NOTEBOOK_FAILED';
@@ -84,6 +83,8 @@ export function deleteNoteBook(id, token, index) {
 
 // getNotes
 export function getSingleNotebook(gistId, accessToken) {
+  console.log('token', accessToken);
+  console.log('id', gistId);
   return function(dispatch) {
     return notebookApis
       .getNotebookById(gistId, accessToken)
