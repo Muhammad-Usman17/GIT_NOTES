@@ -2,7 +2,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import getOr from 'lodash/fp/getOr';
-
 // src
 import SignInInner from './SignInInner';
 import { parseQueryString } from '../../utils';
@@ -11,18 +10,20 @@ import { login } from '../../redux/actions';
 
 const GITHUB_URL = 'https://github.com/login/oauth/authorize';
 const CLIENT_ID = '956b89a4af0e7392a865';
-
 class SignIn extends Component {
   componentDidMount() {
     const { authenticated, code, dispatch } = this.props;
-
-    if (code) {
+    if (!authenticated && code) {
       dispatch(login(code));
+    } else if (authenticated) {
+      history.push('/');
+      history.push('/dashboard');
     }
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.authenticated) {
-      history.replace('/dashboard');
+      history.push('/');
+      history.push('/dashboard');
     }
   }
 

@@ -8,6 +8,10 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Button from '@material-ui/core/Button';
 
+//  src
+import './NoteItem.css';
+import '../../shared-styles/NoteList.css';
+
 const NoteItemInner = props => {
   const {
     filename,

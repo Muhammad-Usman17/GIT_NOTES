@@ -9,14 +9,20 @@ import CardContent from '@material-ui/core/CardContent';
 import NoteItem from '../NoteItem';
 
 const NotesList = props => {
-  const { notes, token, dispatch, match } = props;
+  const { notes, token, dispatch, noteBookId } = props;
   return (
     <Card className="Home-Card">
       <CardHeader className="Home-Card-Header" title="List of My Notebooks" />
       <CardContent>
         <List>
           {notes.map((value, index) =>
-            <NoteItem token={token} value={value} index={index} dispatch={dispatch} match={match} />
+            <NoteItem
+              token={token}
+              value={value}
+              index={index}
+              dispatch={dispatch}
+              noteBookId={noteBookId}
+            />
           )}
         </List>
       </CardContent>

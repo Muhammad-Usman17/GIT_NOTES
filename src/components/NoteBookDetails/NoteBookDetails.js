@@ -5,12 +5,13 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 
-// src
+//  src
+import '../../shared-styles/NoteList.css';
 
 const NoteBookDetails = props => {
   const { owner, description, lastUpdated, note } = props;
   return (
-    <Card>
+    <Card className="Home-Card">
       <CardHeader className="NoteList-Card-Header" title="NoteBook Details" />
       <CardContent className="NoteList-Details">
         <Card className="NoteList-Details-Card">

@@ -1,2 +1,28 @@
-.tool + .tool {
-  padding-top: 5px; }
+.SignIn {
+  text-align: center;
+}
+
+.SignIn-logo {
+  animation: SignIn-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.SignIn-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.SignIn-title {
+  font-size: 1.5em;
+}
+
+.SignIn-intro {
+  font-size: large;
+}
+
+@keyframes SignIn-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

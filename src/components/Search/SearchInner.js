@@ -1,44 +1,53 @@
-//libss
-import React from 'react'
+// libss
+import React from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Card from '@material-ui/core/Card';
-
-
-
-
 // src
 import './Search.css';
-import NoteBookDetail from '../Reuseable/NotebookDetail';
-import NoteList from '../Reuseable/NoteList';
+import NoteBookDetails from '../NoteBookDetails';
+import NotesList from '../NotesList';
 
-
-const SearchInner = ({
+const SearchInner = props => {
+  const {
+    onChangeId,
     onClickSearch,
-    onIdChange,
-    props,
-    onDeleteNote,
-    onUpdateNote,
-    openUpdateDailog,
-    closeUpdateDailog,
-    handleChangeDailogContent,
-    handleChangeDailogName,
-    state
-  }) => (
-<div>
-    <Card className="Search-Div">
-        <TextField className="Search-TextBox" id="Id" label="Enter NoteBook Id" onChange={onIdChange} margin="normal" />
-        <Button onClick={onClickSearch} className="Search-Button" variant="outlined" color="primary">
-            Search
+    dispatch,
+    noteBookId,
+    owner,
+    description,
+    lastUpdated,
+    note,
+    notes,
+    token,
+  } = props;
+  return (
+    <div>
+      <Card className="Search-Div">
+        <TextField
+          className="Search-TextBox"
+          id="Id"
+          label="Enter NoteBook Id"
+          onChange={onChangeId}
+          margin="normal"
+        />
+        <Button
+          onClick={onClickSearch}
+          className="Search-Button"
+          variant="outlined"
+          color="primary"
+        >
+          Search
         </Button>
-    </Card>
-    <NoteBookDetail props={props}></NoteBookDetail>
-    <NoteList props={props} onDeleteNote={ onDeleteNote } onUpdateNote={ onUpdateNote } openUpdateDailog={ openUpdateDailog } closeUpdateDailog={ closeUpdateDailog } handleChangeDailogContent={ handleChangeDailogContent } handleChangeDailogName={ handleChangeDailogName } state={ state } classStyle="Search-List-Button"></NoteList>
-
-</div>  
-
+      </Card>
+      <NoteBookDetails
+        note={note}
+        description={description}
+        lastUpdated={lastUpdated}
+        owner={owner}
+      />
+      <NotesList notes={notes} noteBookId={noteBookId} dispatch={dispatch} token={token} />
+    </div>
   );
-  
-export default SearchInner
-
-
+};
+export default SearchInner;

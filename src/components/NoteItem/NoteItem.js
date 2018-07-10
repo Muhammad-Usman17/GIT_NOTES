@@ -28,9 +28,8 @@ class NoteItem extends React.Component {
   };
 
   handleDeleteNote = name => {
-    const { dispatch, match, token } = this.props;
-    const id = match.params.id;
-    dispatch(NoteOperation(id, name, name, '', token));
+    const { dispatch, noteBookId, token } = this.props;
+    dispatch(NoteOperation(noteBookId, name, name, '', token));
   };
 
   handleDialogOpen = (name, content) => {
@@ -49,10 +48,9 @@ class NoteItem extends React.Component {
   };
 
   handleUpdateNote = oldFileName => {
-    const { dispatch, match, token } = this.props;
-    const id = match.params.id;
+    const { dispatch, noteBookId, token } = this.props;
     dispatch(
-      NoteOperation(id, oldFileName, this.state.dialogName, this.state.dailogContent, token)
+      NoteOperation(noteBookId, oldFileName, this.state.dialogName, this.state.dailogContent, token)
     );
     this.setState({
       isOpened: false,
@@ -66,7 +64,8 @@ class NoteItem extends React.Component {
   };
 
   render() {
-    const { value, index } = this.props;
+    const { value, index, token } = this.props;
+    const className = token != '' ? '' : 'NoteItem-Expansion-Button';
     const { filename, language, type, content } = value;
     const { isOpened, orignalFileName, dialogName, dailogContent } = this.state;
     return (
@@ -77,7 +76,7 @@ class NoteItem extends React.Component {
           type={type}
           content={content}
           index={index}
-          classStyle={''}
+          classStyle={className}
           onClickDelete={this.handleDeleteNote}
           onClickUpdate={this.handleDialogOpen}
         />

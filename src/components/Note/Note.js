@@ -32,11 +32,12 @@ class Note extends Component {
   render() {
     const { token } = this.state;
     const { dispatch, match, owner, description, lastUpdated, note, notes } = this.props;
+    const { noteBookId } = match.params;
     return (
       <NoteInner
         token={token}
         dispatch={dispatch}
-        match={match}
+        noteBookId={noteBookId}
         owner={owner}
         description={description}
         lastUpdated={lastUpdated}

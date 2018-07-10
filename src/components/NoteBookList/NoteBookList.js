@@ -7,6 +7,7 @@ import CardContent from '@material-ui/core/CardContent';
 // src
 
 import NoteBookItem from '../NoteBookItem';
+import '../../shared-styles/NoteList.css';
 
 const NoteBookList = props => {
   const { notebooks, token, dispatch } = props;

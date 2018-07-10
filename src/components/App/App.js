@@ -1,9 +1,9 @@
-// libs
+//  libs
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import getOr from 'lodash/fp/getOr';
 import { sessionService } from 'redux-react-session';
-// src
+//  src
 import AppInner from './AppInner';
 import { logout } from '../../redux/actions';
 import history from '../../utils/history';
