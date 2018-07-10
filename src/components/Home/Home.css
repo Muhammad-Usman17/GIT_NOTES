@@ -1,28 +1,30 @@
+.Home-root {
+  flex-grow: 1
+}
 
-.Home-root{
-    flex-grow: 1
-  }
-  .Home-Card{
-    margin: 30px;
-    flex-grow: 1;
-    align-items: center;
-  }
-  .Home-Card-Header{
-    display: flex;
-   background-color: lightblue;
-  }
-  .Home-CreateDiv{
-    margin: 20px;
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-    align-items: center;  
-  }
-  .Home-ListDiv{
-    margin: 20px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    flex-direction: column;
+.Home-Card {
+  margin: 30px;
+  flex-grow: 1;
+  align-items: center;
+}
 
-  }
+.Home-Card-Header {
+  display: flex;
+  background-color: lightblue;
+}
+
+.Home-CreateDiv {
+  margin: 20px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+}
+
+.Home-ListDiv {
+  margin: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  flex-direction: column;
+}

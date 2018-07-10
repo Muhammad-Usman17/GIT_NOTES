@@ -1,18 +1,14 @@
 // libs
 import {combineReducers} from 'redux';
-import { sessionService, sessionReducer } from 'redux-react-session';
+import {sessionReducer } from 'redux-react-session';
 
 // src
-import search from './SearchReducer';
-import gists from './GistReducer';
-import notes from './notes'
-
+import notes from './notes';
+import notebooks from './notebooks';
 
 const rootReducer = combineReducers({
-  // short hand property names
-  search,
+  notebooks,
   notes,
-  gists,
   session: sessionReducer
 })
 

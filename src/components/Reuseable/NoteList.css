@@ -1,55 +1,48 @@
-.NoteList-Div{
-    margin-left: 100px;
-    margin-right: 100px;
-    display: flex;
-  
-    flex-direction: row;
-    align-items: center;  
-    justify-content: center
-  }
-  .NoteList-TextBox{
-    margin-right: 5px;
-    margin-left: 5px;
-    width: 70%
-   
-  }
-  .NoteList-Button{
-    margin-left: 5px;
-    margin-right: 5px;
-    margin-top: 5px;
-    width: 25%
-   
-  }
-  .NoteList-Details{
-  
-    display: flex;
-  
-    flex-direction: row;
-  
-    justify-content: space-between
-  }
-  .NoteList-Details-Card{
-  
+.NoteList-Div {
+  margin-left: 100px;
+  margin-right: 100px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center
+}
+
+.NoteList-TextBox {
+  margin-right: 5px;
+  margin-left: 5px;
+  width: 70%
+}
+
+.NoteList-Button {
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 5px;
+  width: 25%
+}
+
+.NoteList-Details {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between
+}
+
+.NoteList-Details-Card {
   margin: 5px;
-  width:100%;
-  }
-  
-  .NoteList-Expansion-Panel{
-  
-   
-    width:100%;
-    }
-    .NoteList-Expansion-Summary{
-  
-      display: flex !important;
-  
-      flex-direction: row !important;
-    
-      justify-content: space-around !important;
-      width:100%;
-      }
-      
-      .NoteList-Card-Header{
-        display: flex;
-       background-color: lightblue;
-      }
+  width: 100%;
+}
+
+.NoteList-Expansion-Panel {
+  width: 100%;
+}
+
+.NoteList-Expansion-Summary {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-around !important;
+  width: 100%;
+}
+
+.NoteList-Card-Header {
+  display: flex;
+  background-color: lightblue;
+}

@@ -1,6 +1,5 @@
 
-// src
-import gistApis from '../../api/gistApis';
+import notebookApis from '../../api/notebook';
 
 export const CREATE_GIST_SUCCESS = 'CREATE_GIST_SUCCESS'
 export const CREATE_GIST_OK = 'CREATE_GIST_OK'
@@ -74,9 +73,9 @@ export function deleteGist(data) {
 
 
 // getNotes
-export function getSingleGist(gistId) {
+export function getSingleGist(gistId,accessToken) {
   return function(dispatch) {
-  return gistApis.serachSingleGistById(gistId).then(response => {
+  return gistApis.serachSingleGistById(gistId,accessToken).then(response => {
     dispatch({
       type: "SINGLE_GIST_SUCCESS",
       payload: response.data,
@@ -90,4 +89,22 @@ export function getSingleGist(gistId) {
     });
 })
 }
+}
+export function NoteOperation(gistId,Input) {
+ 
+  return function(dispatch) {
+   
+    return gistApis.editNotebook(gistId,Input).then(response => {
+      dispatch({
+        type:'NOTEBOOK_LOADED',
+        payload: response.data
+      });
+      }).catch(error => {
+        dispatch({
+          type: 'NOTEBOOK_LOADING_ERROR',
+          payload:error
+        });
+      });
+    
+  };
 }

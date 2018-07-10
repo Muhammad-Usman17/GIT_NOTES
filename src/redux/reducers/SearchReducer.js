@@ -1,17 +1,14 @@
 
-import initialState from './initialState';
-
 export default function SearchReducer(state = {}, action) {
   const { type, payload, meta } = action
   
   switch (type) {
-    case "SINGLE_GIST_SUCCESS": {
-      const { id } = meta
-      return {...state, single_gist: payload}
+
+    case NOTEBOOK_LOADED: {
+      return {...state,  note:payload}
     }
-    case "SINGLE_GIST_FAILED": {
-      const { id } = meta
-      return {...state, [id]: payload} }
+    case NOTEBOOK_LOADING_ERROR: {
+      return {...state, error: payload} }
     default: {
       return state
     }

@@ -1,2 +1,0 @@
-export const ACCESS_TOKEN_SUCCESS = 'ACCESS_TOKEN_SUCCESS';
-export const GET_ALL_GIST = 'GET_ALL_GIST';

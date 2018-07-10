@@ -1,28 +1,34 @@
+.Note-root {
+  flex-grow: 1
+}
 
-.Note-root{
-    flex-grow: 1
-  }
-  .Note-Card{
-    margin: 30px;
-    flex-grow: 1;
-    align-items: center;
-  }
-  .Note-Card-Header{
-    display: flex;
-   background-color: lightblue;
-  }
-  .Note-CreateDiv{
-    margin: 20px;
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-    align-items: center;  
-  }
-  .Note-ListDiv{
-    margin: 20px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    flex-direction: column;
+.Note-Card {
+  margin: 30px;
+  flex-grow: 1;
+  align-items: center;
+}
 
-  }
+.Note-Card-Header {
+  display: flex;
+  background-color: lightblue;
+}
+
+.Note-CreateDiv {
+  margin: 20px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+}
+
+.Note-ListDiv {
+  margin: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.Note-List-Button {
+  display: flex;
+}

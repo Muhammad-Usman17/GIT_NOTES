@@ -1,55 +1,52 @@
-.Search-Div{
+.Search-Div {
   margin-left: 100px;
   margin-right: 100px;
   display: flex;
-
   flex-direction: row;
-  align-items: center;  
+  align-items: center;
   justify-content: center
 }
-.Search-TextBox{
+
+.Search-TextBox {
   margin-right: 5px;
   margin-left: 5px;
   width: 70%
- 
 }
-.Search-Button{
+
+.Search-Button {
   margin-left: 5px;
   margin-right: 5px;
   margin-top: 5px;
   width: 25%
- 
 }
-.Search-Details{
 
+.Search-Details {
   display: flex;
-
   flex-direction: row;
-
   justify-content: space-between
 }
-.Search-Details-Card{
 
-margin: 5px;
-width:100%;
+.Search-Details-Card {
+  margin: 5px;
+  width: 100%;
 }
 
-.Search-Expansion-Panel{
+.Search-Expansion-Panel {
+  width: 100%;
+}
 
- 
-  width:100%;
-  }
-  .Search-Expansion-Summary{
+.Search-Expansion-Summary {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-around !important;
+  width: 100%;
+}
 
-    display: flex !important;
+.Search-Card-Header {
+  display: flex;
+  background-color: lightblue;
+}
 
-    flex-direction: row !important;
-  
-    justify-content: space-around !important;
-    width:100%;
-    }
-    
-    .Search-Card-Header{
-      display: flex;
-     background-color: lightblue;
-    }
+.Search-List-Button {
+  display: none !important;
+}

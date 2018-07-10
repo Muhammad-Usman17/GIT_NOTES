@@ -1,4 +1,3 @@
-import NoteList from './NoteList'
-import NotebookDetails from './NotebookDetail'
+export * from './NoteList'
+export * from './NotebookDetail'
 
-export default NoteList & NotebookDetails 

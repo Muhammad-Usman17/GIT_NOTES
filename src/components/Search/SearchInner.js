@@ -1,3 +1,4 @@
+//libss
 import React from 'react'
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -10,24 +11,31 @@ import Card from '@material-ui/core/Card';
 import './Search.css';
 import NoteBookDetail from '../Reuseable/NotebookDetail';
 import NoteList from '../Reuseable/NoteList';
-const SearchInner = ({onClickSearch ,onIdChange,props}) => (
-<div>
-   <Card className="Search-Div">
-      <TextField
-         className="Search-TextBox"
-         id="Id"
-         label="Enter Gist Id"
-         onChange={onIdChange}
-         margin="normal"/>
-      <Button onClick={onClickSearch}   className="Search-Button" variant="outlined" color="primary">
-      Search
-      </Button>
-   </Card>
-  <NoteBookDetail props={props}></NoteBookDetail>
-  <NoteList props={props}></NoteList>
-   
-</div>
 
+
+const SearchInner = ({
+    onClickSearch,
+    onIdChange,
+    props,
+    onDeleteNote,
+    onUpdateNote,
+    openUpdateDailog,
+    closeUpdateDailog,
+    handleChangeDailogContent,
+    handleChangeDailogName,
+    state
+  }) => (
+<div>
+    <Card className="Search-Div">
+        <TextField className="Search-TextBox" id="Id" label="Enter NoteBook Id" onChange={onIdChange} margin="normal" />
+        <Button onClick={onClickSearch} className="Search-Button" variant="outlined" color="primary">
+            Search
+        </Button>
+    </Card>
+    <NoteBookDetail props={props}></NoteBookDetail>
+    <NoteList props={props} onDeleteNote={ onDeleteNote } onUpdateNote={ onUpdateNote } openUpdateDailog={ openUpdateDailog } closeUpdateDailog={ closeUpdateDailog } handleChangeDailogContent={ handleChangeDailogContent } handleChangeDailogName={ handleChangeDailogName } state={ state } classStyle="Search-List-Button"></NoteList>
+
+</div>  
 
   );
   

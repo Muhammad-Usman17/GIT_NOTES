@@ -1,15 +1,18 @@
-
-.App-root{
+.App-root {
   flex-grow: 1
 }
-.App-flex{
-  flex: 1
+
+.App-flex {
+  flex: 2
 }
-.App-Name{
+
+.App-Button {
+  color: white !important
+}
+
+.App-Name {
   margin-right: 15px;
   margin-left: 3px;
   font-size: 20px;
-  font-family:  "Courier New"  
+  font-family: "Courier New"
 }
-
-

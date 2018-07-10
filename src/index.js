@@ -9,8 +9,6 @@ import { Provider } from 'react-redux';
 import history from '../src/utils/history';
 import Search from '../src/components/Search';
 import SignIn from '../src/components/SignIn';
-import Home from '../src/components/Home';
-import NoteBook from '../src/components/NoteBook';
 import App from '../src/components/App'
 import configureStore from '../src/redux/store/configureStore';
 
