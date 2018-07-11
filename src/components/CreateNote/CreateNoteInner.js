@@ -13,12 +13,7 @@ const CreateNoteInner = props => {
       <CardHeader className="Home-Card-Header" title="Create Note" />
       <CardContent className="Home-CreateDiv">
         <TextField id="name" label=" Note name" onChange={onChangeName} margin="normal" />
-        <TextField
-          id="description"
-          label="Description"
-          onChange={onChangeContent}
-          margin="normal"
-        />
+        <TextField id="content" label="Content" onChange={onChangeContent} margin="normal" />
         <Button onClick={onClickCreate} variant="outlined" color="primary">
           Create Note
         </Button>

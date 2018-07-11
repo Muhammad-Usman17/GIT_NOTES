@@ -32,12 +32,12 @@ class Note extends Component {
   render() {
     const { token } = this.state;
     const { dispatch, match, owner, description, lastUpdated, note, notes } = this.props;
-    const { noteBookId } = match.params;
+    const { id } = match.params;
     return (
       <NoteInner
         token={token}
         dispatch={dispatch}
-        noteBookId={noteBookId}
+        noteBookId={id}
         owner={owner}
         description={description}
         lastUpdated={lastUpdated}
@@ -49,12 +49,16 @@ class Note extends Component {
 }
 
 function mapStateToProps(state, ownProps) {
-  const description = getOr('', 'notes.note.description')(state);
-  const owner = getOr('', 'notes.note.owner.login')(state);
-  const lastUpdated = getOr('', 'notes.note.updated_at')(state);
-  const note = getOr({}, 'notes.note.files')(state);
-  const notes = note == {} ? [] : Object.values(note);
+  const { match } = ownProps;
+  const { id } = match.params;
 
+  const Notebook = state.notes[id];
+  const description = getOr('', 'description')(Notebook);
+  const owner = getOr('', 'login')(Notebook);
+  const lastUpdated = getOr('', 'updated_at')(Notebook);
+  const note = getOr({}, 'files')(Notebook);
+  const notes = note == {} ? [] : Object.values(note);
+  console.log('dd', Notebook);
   return {
     description,
     owner,

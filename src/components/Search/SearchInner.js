@@ -5,6 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import Card from '@material-ui/core/Card';
 // src
 import './Search.css';
+import Header from '../Header';
 import NoteBookDetails from '../NoteBookDetails';
 import NotesList from '../NotesList';
 
@@ -20,13 +21,17 @@ const SearchInner = props => {
     note,
     notes,
     token,
+    onClickSignout,
+    user,
+    authenticated,
   } = props;
   return (
     <div>
+      <Header onClickSignout={onClickSignout} user={user} authenticated={authenticated} />
       <Card className="Search-Div">
         <TextField
           className="Search-TextBox"
-          id="Id"
+          id="id"
           label="Enter NoteBook Id"
           onChange={onChangeId}
           margin="normal"

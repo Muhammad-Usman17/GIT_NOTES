@@ -17,8 +17,8 @@ class Home extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.user.username && this.props.user !== prevProps.user) {
-      const { dispatch, user } = this.props;
+    const { user, authenticated, dispatch } = this.props;
+    if (user.username && user !== prevProps.user) {
       const { token } = this.state;
       dispatch(NotebookList(user.username, token));
     }
@@ -36,22 +36,15 @@ class Home extends Component {
     const { token } = this.state;
     const { notebooks, dispatch } = this.props;
 
-    return (
-      <HomeInner
-        {...this.props}
-        {...this.state}
-        token={token}
-        notebook={notebooks}
-        dispatch={dispatch}
-      />
-    );
+    return <HomeInner token={token} notebooks={notebooks} dispatch={dispatch} />;
   }
 }
 
 function mapStateToProps(state) {
   const user = getOr('', 'session.user')(state);
   const authenticated = getOr('', 'session.authenticated')(state);
-  const notebooks = getOr([], 'notebooks.notebooks')(state);
+  const notebooks = getOr([], 'notebooks.mainReducer.notebooks')(state);
+  const isLoading = getOr(false, 'notebooks.isLoading')(state);
   const created = getOr(false, 'notebooks.created')(state);
   const deleted = getOr(false, 'notebooks.deleted')(state);
 

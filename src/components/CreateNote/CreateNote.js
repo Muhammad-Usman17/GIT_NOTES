@@ -10,9 +10,9 @@ import { NoteOperation } from '../../redux/actions/notes';
 class CreateNote extends React.Component {
   handleCreateNote = () => {
     const { dispatch, noteBookId, token } = this.props;
-    dispatch(
-      NoteOperation(noteBookId, this.state.name, this.state.name, this.state.content, token)
-    );
+    const { name, content } = this.state;
+    const Content = content == '' || content == undefined ? 'this is content' : content;
+    dispatch(NoteOperation(noteBookId, name, name, Content, token));
   };
 
   handleChangeName = event => {

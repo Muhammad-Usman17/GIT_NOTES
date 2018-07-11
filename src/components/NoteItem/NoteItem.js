@@ -49,9 +49,10 @@ class NoteItem extends React.Component {
 
   handleUpdateNote = oldFileName => {
     const { dispatch, noteBookId, token } = this.props;
-    dispatch(
-      NoteOperation(noteBookId, oldFileName, this.state.dialogName, this.state.dailogContent, token)
-    );
+    const { dialogName, dailogContent } = this.state;
+    const Content =
+      dailogContent == '' || dailogContent == undefined ? 'this is content' : dailogContent;
+    dispatch(NoteOperation(noteBookId, oldFileName, dialogName, Content, token));
     this.setState({
       isOpened: false,
     });

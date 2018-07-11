@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import getOr from 'lodash/fp/getOr';
 import { sessionService } from 'redux-react-session';
+
 //  src
 import AppInner from './AppInner';
 import { logout } from '../../redux/actions';
@@ -28,18 +29,19 @@ class App extends Component {
     }
   }
 
-  handleClickSignOut = () => {
+  handleSignOut = () => {
     const { dispatch } = this.props;
     dispatch(logout());
   };
   render() {
+    const { match, user, authenticated } = this.props;
+    const path = getOr('/dashboard', 'path')(match);
     return (
       <AppInner
-        token={this.state.token}
-        props={this.props}
-        onClickSignout={this.handleClickSignOut}
-        user={this.props.user}
-        authenticated={this.props.authenticated}
+        path={path}
+        onClickSignout={this.handleSignOut}
+        user={user}
+        authenticated={authenticated}
       />
     );
   }

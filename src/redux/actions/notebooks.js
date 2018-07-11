@@ -1,6 +1,7 @@
 // src
 import notebookApis from '../../api/notebook';
 
+export const CREATE_NOTEBOOK = 'CREATE_NOTEBOOK';
 export const CREATE_NOTEBOOK_SUCCESS = 'CREATE_NOTEBOOK_SUCCESS';
 export const CREATE_NOTEBOOK_FAILED = 'CREATE_NOTEBOOK_FAILED';
 export const NOTEBOOK_LIST_SUCCESS = 'NOTEBOOK_LIST_SUCCESS';
@@ -22,6 +23,7 @@ export function gistOk() {
 
 export function createNoteBooks(description, name, token) {
   return function(dispatch) {
+    dispatch({ type: CREATE_NOTEBOOK });
     return notebookApis
       .createNotebook(description, name, token)
       .then(response => {

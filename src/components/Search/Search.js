@@ -6,7 +6,7 @@ import { sessionService } from 'redux-react-session';
 
 // src
 import SearchInner from './SearchInner';
-import { getSingleNotebook } from '../../redux/actions';
+import { getSingleNotebook, logout } from '../../redux/actions';
 
 class Search extends Component {
   constructor(props) {
@@ -16,12 +16,14 @@ class Search extends Component {
       dialogName: '',
       orignalFileName: '',
       dailogContent: '',
+      id: '',
     };
   }
 
   handleChangeId = event => {
+    const idVal = event.target.value;
     this.setState({
-      id: event.target.value,
+      id: idVal,
     });
   };
 
@@ -35,12 +37,23 @@ class Search extends Component {
       dispatch(getSingleNotebook(id, response));
     });
   };
+  handleSignOut = () => {
+    const { dispatch } = this.props;
+    dispatch(logout());
+  };
 
   handleDum = () => {};
 
   render() {
-    const { dispatch, owner, description, lastUpdated, note, notes } = this.props;
-    const { id } = this.setState;
+    const { id } = this.state;
+    const { Notebook, dispatch, user, authenticated } = this.props;
+    const notebook = Notebook[id];
+    const description = getOr('', 'description')(notebook);
+    const owner = getOr('', 'login')(notebook);
+    const lastUpdated = getOr('', 'updated_at')(notebook);
+    const note = getOr({}, 'files')(notebook);
+    const notes = note == {} ? [] : Object.values(note);
+
     return (
       <SearchInner
         onClickSearch={this.handleSearch}
@@ -53,24 +66,23 @@ class Search extends Component {
         lastUpdated={lastUpdated}
         note={note}
         notes={notes}
+        onClickSignout={this.handleSignOut}
+        user={user}
+        authenticated={authenticated}
       />
     );
   }
 }
 
 function mapStateToProps(state, ownProps) {
-  const description = getOr('', 'notes.note.description')(state);
-  const owner = getOr('', 'notes.note.owner.login')(state);
-  const lastUpdated = getOr('', 'notes.note.updated_at')(state);
-  const note = getOr({}, 'notes.note.files')(state);
-  const notes = note == {} ? [] : Object.values(note);
+  const Notebook = getOr('', 'notes')(state);
+  const user = getOr('', 'session.user')(state);
+  const authenticated = getOr('', 'session.authenticated')(state);
 
   return {
-    description,
-    owner,
-    lastUpdated,
-    notes,
-    note,
+    Notebook,
+    user,
+    authenticated,
   };
 }
 export default connect(mapStateToProps)(Search);
