@@ -29,14 +29,21 @@ class Home extends Component {
       this.setState({
         token: result.tok,
       });
+      const { user, authenticated, dispatch } = this.props;
+      if (user.username && user) {
+        const { token } = this.state;
+        dispatch(NotebookList(user.username, token));
+      }
     });
   }
 
   render() {
     const { token } = this.state;
-    const { notebooks, dispatch } = this.props;
+    const { notebooks, dispatch, isLoading } = this.props;
 
-    return <HomeInner token={token} notebooks={notebooks} dispatch={dispatch} />;
+    return (
+      <HomeInner token={token} notebooks={notebooks} dispatch={dispatch} isLoading={isLoading} />
+    );
   }
 }
 
@@ -45,8 +52,8 @@ function mapStateToProps(state) {
   const authenticated = getOr('', 'session.authenticated')(state);
   const notebooks = getOr([], 'notebooks.mainReducer.notebooks')(state);
   const isLoading = getOr(false, 'notebooks.isLoading')(state);
-  const created = getOr(false, 'notebooks.created')(state);
-  const deleted = getOr(false, 'notebooks.deleted')(state);
+  const created = getOr(false, 'notebooks.mainReducer.created')(state);
+  const deleted = getOr(false, 'notebooks.mainReducer.deleted')(state);
 
   return {
     user,
@@ -54,6 +61,7 @@ function mapStateToProps(state) {
     notebooks,
     created,
     deleted,
+    isLoading,
   };
 }
 export default connect(mapStateToProps)(Home);

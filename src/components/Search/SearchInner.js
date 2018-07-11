@@ -8,6 +8,7 @@ import './Search.css';
 import Header from '../Header';
 import NoteBookDetails from '../NoteBookDetails';
 import NotesList from '../NotesList';
+import ProgressBar from '../ProgressBar';
 
 const SearchInner = props => {
   const {
@@ -24,6 +25,7 @@ const SearchInner = props => {
     onClickSignout,
     user,
     authenticated,
+    isLoading,
   } = props;
   return (
     <div>
@@ -45,6 +47,7 @@ const SearchInner = props => {
           Search
         </Button>
       </Card>
+      <ProgressBar isLoading={isLoading} />
       <NoteBookDetails
         note={note}
         description={description}

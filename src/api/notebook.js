@@ -73,16 +73,13 @@ class notebookApis {
         'Access-Control-Allow-Origin': '*',
       },
     };
-    return axios
-      .get(
-        `${PROXY_URL}https://api.github.com/gists/${gistId}?client_id=${CLIENT_ID}&access_token=${accessToken}`,
-        config
-      )
-      .then(response => response)
-      .catch(error => {
-        console.log('Error: ', error);
-        return error;
-      });
+    const URL1 = `${PROXY_URL}https://api.github.com/gists/${gistId}?client_id=${CLIENT_ID}&access_token=${accessToken}`;
+    const URL2 = `${PROXY_URL}https://api.github.com/gists/${gistId}`;
+    const URL = accessToken == '' ? URL2 : URL1;
+    return axios.get(URL, config).then(response => response).catch(error => {
+      console.log('Error: ', error);
+      return error;
+    });
   }
   static editNotebook(gistId, name, filename, content, token) {
     const config = {

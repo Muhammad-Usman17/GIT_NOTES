@@ -6,6 +6,7 @@ import React from 'react';
 import NoteBookDetails from '../NoteBookDetails';
 import NotesList from '../NotesList';
 import CreateNote from '../CreateNote';
+import ProgressBar from '../ProgressBar';
 
 const NoteInner = props => {
   const {
@@ -18,9 +19,11 @@ const NoteInner = props => {
     note,
     notes,
     token,
+    isLoading,
   } = props;
   return (
     <div>
+      <ProgressBar isLoading={isLoading} />
       <CreateNote noteBookId={noteBookId} token={token} dispatch={dispatch} />
       <NoteBookDetails
         note={note}

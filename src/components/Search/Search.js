@@ -28,14 +28,24 @@ class Search extends Component {
   };
 
   handleSearch = () => {
-    sessionService.loadSession().then(result => result.tok).then(response => {
-      this.setState({
-        token: response,
+    const { authenticated } = this.props;
+    if (authenticated) {
+      sessionService.loadSession().then(result => result.tok).then(response => {
+        this.setState({
+          token: response,
+        });
+        const { dispatch } = this.props;
+        const { id } = this.state;
+        console.log('iamcalled');
+        console.log(id);
+        console.log(response);
+        dispatch(getSingleNotebook(id, response));
       });
+    } else {
       const { dispatch } = this.props;
       const { id } = this.state;
-      dispatch(getSingleNotebook(id, response));
-    });
+      dispatch(getSingleNotebook(id, ''));
+    }
   };
   handleSignOut = () => {
     const { dispatch } = this.props;
@@ -46,7 +56,7 @@ class Search extends Component {
 
   render() {
     const { id } = this.state;
-    const { Notebook, dispatch, user, authenticated } = this.props;
+    const { Notebook, dispatch, user, authenticated, isLoading } = this.props;
     const notebook = Notebook[id];
     const description = getOr('', 'description')(notebook);
     const owner = getOr('', 'login')(notebook);
@@ -69,20 +79,23 @@ class Search extends Component {
         onClickSignout={this.handleSignOut}
         user={user}
         authenticated={authenticated}
+        isLoading={isLoading}
       />
     );
   }
 }
 
 function mapStateToProps(state, ownProps) {
-  const Notebook = getOr('', 'notes')(state);
+  const Notebook = getOr('', 'notes.mainReducer')(state);
   const user = getOr('', 'session.user')(state);
   const authenticated = getOr('', 'session.authenticated')(state);
+  const isLoading = getOr(false, 'notes.isLoading')(state);
 
   return {
     Notebook,
     user,
     authenticated,
+    isLoading,
   };
 }
 export default connect(mapStateToProps)(Search);

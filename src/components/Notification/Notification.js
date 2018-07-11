@@ -1,17 +1,27 @@
 // lib
 import React from 'react';
-import List from '@material-ui/core/List';
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardContent from '@material-ui/core/CardContent';
-// src
+import Snackbar from '@material-ui/core/Snackbar';
 
-import Notification from '../NoteItem';
-
-const NotesList = props => {
-  const {  } = props;
+const Notification = props => {
+  const { isOpened, message, handleClose } = props;
   return (
-  
+    <Snackbar
+      anchorOrigin={{
+        vertical: 'bottom',
+        horizontal: 'left',
+      }}
+      open={isOpened}
+      autoHideDuration={6000}
+      onClose={handleClose}
+      ContentProps={{
+        'aria-describedby': 'message-id',
+      }}
+      message={
+        <span id="message-id">
+          {message}
+        </span>
+      }
+    />
   );
 };
 export default Notification;

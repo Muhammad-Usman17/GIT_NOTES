@@ -6,11 +6,17 @@ import * as ActionTypes from '../actions';
 
 const isLoading = (state = false, action) => {
   switch (action.type) {
-    case ActionTypes.CREATE_NOTEBOOK: {
+    case ActionTypes.CREATE_NOTEBOOK:
+    case ActionTypes.NOTEBOOK_DELETE:
+    case ActionTypes.NOTEBOOK_LIST: {
       return true;
     }
     case ActionTypes.CREATE_NOTEBOOK_SUCCESS:
-    case ActionTypes.CREATE_NOTEBOOK_FAILED: {
+    case ActionTypes.CREATE_NOTEBOOK_FAILED:
+    case ActionTypes.NOTEBOOK_DELETE_SUCCESS:
+    case ActionTypes.NOTEBOOK_LIST_SUCCESS:
+    case ActionTypes.NOTEBOOK_LIST_FAILED:
+    case ActionTypes.NOTEBOOK_DELETE_FAILED: {
       return false;
     }
     default: {
@@ -49,15 +55,11 @@ function mainReducer(state = {}, action) {
     case ActionTypes.NOTEBOOK_DELETE_FAILED: {
       return { ...state, error: payload, deleted: false };
     }
-    case ActionTypes.NOTEBOOK_DELETE_OK: {
-      return { ...state, deleted: false };
-    }
+
     case ActionTypes.CREATE_NOTEBOOK_FAILED: {
       return { ...state, created: false };
     }
-    case ActionTypes.CREATE_NOTEBOOK_OK: {
-      return { ...state, created: false };
-    }
+
     default: {
       return state;
     }

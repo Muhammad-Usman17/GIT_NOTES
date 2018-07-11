@@ -24,11 +24,13 @@ import CardContent from '@material-ui/core/CardContent';
 import './Home.css';
 import CreateNotebook from '../CreateNotebook';
 import NoteBookList from '../NoteBookList';
+import ProgressBar from '../ProgressBar';
 
 const HomeInnner = props => {
-  const { token, notebooks, dispatch } = props;
+  const { token, notebooks, dispatch, isLoading } = props;
   return (
     <div>
+      <ProgressBar isLoading={isLoading} />
       <CreateNotebook token={token} />
       <NoteBookList token={token} notebooks={notebooks} dipatch={dispatch} />
     </div>

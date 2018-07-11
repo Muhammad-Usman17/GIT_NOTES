@@ -4,22 +4,18 @@ import notebookApis from '../../api/notebook';
 export const CREATE_NOTEBOOK = 'CREATE_NOTEBOOK';
 export const CREATE_NOTEBOOK_SUCCESS = 'CREATE_NOTEBOOK_SUCCESS';
 export const CREATE_NOTEBOOK_FAILED = 'CREATE_NOTEBOOK_FAILED';
+
+export const NOTEBOOK_LIST = 'NOTEBOOK_LIST';
 export const NOTEBOOK_LIST_SUCCESS = 'NOTEBOOK_LIST_SUCCESS';
 export const NOTEBOOK_LIST_FAILED = 'NOTEBOOK_LIST_FAILED';
+
 export const NOTEBOOK_DELETE_SUCCESS = 'NOTEBOOK_DELETE_SUCCESS';
-export const NOTEBOOK_DELETE_OK = 'NOTEBOOK_DELETE_OK';
+export const NOTEBOOK_DELETE = 'NOTEBOOK_DELETE';
 export const NOTEBOOK_DELETE_FAILED = 'NOTEBOOK_DELETE_FAILED';
+
+export const SINGLE_NOTEBOOK = 'SINGLE_NOTEBOOK';
 export const SINGLE_NOTEBOOK_SUCCESS = 'SINGLE_NOTEBOOK_SUCCESS';
 export const SINGLE_NOTEBOOK_FAILED = 'SINGLE_NOTEBOOK_FAILED';
-export const CREATE_NOTEBOOK_OK = 'CREATE_GIST_OK';
-
-export function gistOk() {
-  return function(dispatch) {
-    dispatch({
-      type: CREATE_NOTEBOOK_OK,
-    });
-  };
-}
 
 export function createNoteBooks(description, name, token) {
   return function(dispatch) {
@@ -43,6 +39,7 @@ export function createNoteBooks(description, name, token) {
 
 export function NotebookList(username, token) {
   return function(dispatch) {
+    dispatch({ type: NOTEBOOK_LIST });
     return notebookApis
       .getNotebooks(username, token)
       .then(response => {
@@ -62,6 +59,7 @@ export function NotebookList(username, token) {
 
 export function deleteNoteBook(id, token, index) {
   return function(dispatch) {
+    dispatch({ type: NOTEBOOK_DELETE });
     return notebookApis
       .deleteNotebook(id, token)
       .then(response => {
@@ -69,9 +67,6 @@ export function deleteNoteBook(id, token, index) {
           type: NOTEBOOK_DELETE_SUCCESS,
           payload: response,
           meta: { index },
-        });
-        dispatch({
-          type: NOTEBOOK_DELETE_OK,
         });
       })
       .catch(error => {
@@ -85,9 +80,8 @@ export function deleteNoteBook(id, token, index) {
 
 // getNotes
 export function getSingleNotebook(gistId, accessToken) {
-  console.log('token', accessToken);
-  console.log('id', gistId);
   return function(dispatch) {
+    dispatch({ type: SINGLE_NOTEBOOK });
     return notebookApis
       .getNotebookById(gistId, accessToken)
       .then(response => {
