@@ -1,7 +1,7 @@
 // libs
 import React from 'react';
 import { connect } from 'react-redux';
-import getOr from 'lodash/fp/getOr';
+import {getOr} from 'lodash/fp';
 
 // src
 import CreateNoteInner from './CreateNoteInner';

@@ -38,7 +38,7 @@ class Note extends Component {
         token={token}
         dispatch={dispatch}
         noteBookId={id}
-        owner={owner}
+        owner={owner.login}
         description={description}
         lastUpdated={lastUpdated}
         note={note}

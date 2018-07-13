@@ -59,7 +59,7 @@ class Search extends Component {
     const { Notebook, dispatch, user, authenticated, isLoading } = this.props;
     const notebook = Notebook[id];
     const description = getOr('', 'description')(notebook);
-    const owner = getOr('', 'login')(notebook);
+    const owner = getOr('', 'owner')(notebook);
     const lastUpdated = getOr('', 'updated_at')(notebook);
     const note = getOr({}, 'files')(notebook);
     const notes = note == {} ? [] : Object.values(note);
@@ -71,7 +71,7 @@ class Search extends Component {
         noteBookId={id}
         token={''}
         dispatch={dispatch}
-        owner={owner}
+        owner={owner.login}
         description={description}
         lastUpdated={lastUpdated}
         note={note}

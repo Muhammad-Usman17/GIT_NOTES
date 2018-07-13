@@ -1,6 +1,6 @@
 // libs
-import {combineReducers} from 'redux';
-import {sessionReducer } from 'redux-react-session';
+import { combineReducers } from 'redux';
+import { sessionReducer } from 'redux-react-session';
 
 // src
 import notes from './notes';

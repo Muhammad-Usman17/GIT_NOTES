@@ -13,7 +13,7 @@ const NoteBookList = props => {
   const { notebooks, token, dispatch } = props;
   return (
     <Card className="Home-Card">
-      <CardHeader className="Home-Card-Header" title="List of Notes" />
+      <CardHeader className="Home-Card-Header" title="List of Notebooks" />
       <CardContent>
         <List>
           {notebooks.map((value, index) =>
