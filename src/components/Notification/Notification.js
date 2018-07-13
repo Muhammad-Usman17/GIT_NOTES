@@ -3,16 +3,16 @@ import React from 'react';
 import Snackbar from '@material-ui/core/Snackbar';
 
 const Notification = props => {
-  const { isOpened, message, handleClose } = props;
+  const { isCopied, message, onCloseSnakbar } = props;
   return (
     <Snackbar
       anchorOrigin={{
         vertical: 'bottom',
         horizontal: 'left',
       }}
-      open={isOpened}
+      open={isCopied}
       autoHideDuration={6000}
-      onClose={handleClose}
+      onClose={onCloseSnakbar}
       ContentProps={{
         'aria-describedby': 'message-id',
       }}

@@ -9,6 +9,12 @@ import { deleteNoteBook } from '../../redux/actions';
 import history from '../../utils/history';
 
 class NoteBookItem extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      isCopied: false,
+    };
+  }
   handleDeleteNoteBook = () => {
     const { index, value, token, dispatch } = this.props;
     const { id } = value;
@@ -20,8 +26,20 @@ class NoteBookItem extends React.Component {
     history.replace(`/dashboard/notebook/${id}`);
   };
 
+  handleCopyUrl = () => {
+    this.setState({
+      isCopied: true,
+    });
+  };
+  handleCloseSnakbar = () => {
+    this.setState({
+      isCopied: false,
+    });
+  };
+
   render() {
     const { value, index } = this.props;
+    const { isCopied } = this.state;
     const { id, description, files, html_url: htmlUrl } = value;
     return (
       <NoteBookItemInner
@@ -32,6 +50,9 @@ class NoteBookItem extends React.Component {
         htmlUrl={htmlUrl}
         onClickDelete={this.handleDeleteNoteBook}
         onClickItem={this.handleNotebookDetails}
+        onClickCopy={this.handleCopyUrl}
+        onCloseSnakbar={this.handleCloseSnakbar}
+        isCopied={isCopied}
       />
     );
   }
