@@ -16,6 +16,7 @@ const CreateNotebookInner = ({ onChangeName, onChangeDescription, onClickCreate 
         label="Description"
         onChange={onChangeDescription}
         margin="normal"
+        multiline
       />
       <Button onClick={onClickCreate} variant="outlined" color="primary">
         Create Notebook

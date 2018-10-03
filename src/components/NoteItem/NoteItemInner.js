@@ -7,6 +7,7 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Button from '@material-ui/core/Button';
+import beautify from 'beautify';
 
 //  src
 import './NoteItem.css';
@@ -39,7 +40,9 @@ const NoteItemInner = props => {
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <Typography>
-            {content}
+            <pre>
+              {content}
+            </pre>
           </Typography>
         </ExpansionPanelDetails>
         <Button

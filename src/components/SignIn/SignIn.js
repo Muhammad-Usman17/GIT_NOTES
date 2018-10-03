@@ -1,50 +1,56 @@
 // libs
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import getOr from 'lodash/fp/getOr';
-// src
-import SignInInner from './SignInInner';
-import { parseQueryString } from '../../utils';
-import history from '../../utils/history';
-import { login } from '../../redux/actions';
+import React, { Component } from 'react'
 
-const GITHUB_URL = 'https://github.com/login/oauth/authorize';
-const CLIENT_ID = '956b89a4af0e7392a865';
+import { connect } from 'react-redux'
+import getOr from 'lodash/fp/getOr'
+
+// src
+import SignInInner from './SignInInner'
+import { parseQueryString } from '../../utils'
+import history from '../../utils/history'
+import { login } from '../../redux/actions'
+
+const GITHUB_URL = 'https://github.com/login/oauth/authorize'
+const CLIENT_ID = '956b89a4af0e7392a865'
 class SignIn extends Component {
   componentDidMount() {
-    const { authenticated, code, dispatch } = this.props;
+    const { authenticated, code, dispatch } = this.props
     if (!authenticated && code) {
-      dispatch(login(code));
+      dispatch(login(code))
     } else if (authenticated) {
-      history.push('/');
-      history.push('/dashboard');
+      history.push('/')
+      history.push('/dashboard')
     }
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.authenticated) {
-      history.push('/');
-      history.push('/dashboard');
+      history.push('/')
+      history.push('/dashboard')
     }
   }
 
   handleClickSignIn = () => {
-    window.location.href = `${GITHUB_URL}?client_id=${CLIENT_ID}&scope=user,gist`;
-  };
+    window.location.href = `${GITHUB_URL}?client_id=${CLIENT_ID}&scope=user,gist`
+  }
 
   render() {
-    return <SignInInner onClickSignIn={this.handleClickSignIn} />;
+    return (
+      <div>
+        <SignInInner onClickSignIn={this.handleClickSignIn} />
+      </div>
+    )
   }
 }
 
 function mapStateToProps(state, ownProps) {
-  const queryString = getOr('', 'location.search')(ownProps);
-  const code = getOr('', 'code')(parseQueryString(queryString));
-  const authenticated = getOr('', 'session.authenticated')(state);
+  const queryString = getOr('', 'location.search')(ownProps)
+  const code = getOr('', 'code')(parseQueryString(queryString))
+  const authenticated = getOr('', 'session.authenticated')(state)
 
   return {
     code,
-    authenticated,
-  };
+    authenticated
+  }
 }
 
-export default connect(mapStateToProps)(SignIn);
+export default connect(mapStateToProps)(SignIn)

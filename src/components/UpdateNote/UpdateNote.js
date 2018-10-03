@@ -37,6 +37,7 @@ const UpdateNote = props => {
           label="Note Name"
           type="email"
           fullWidth
+          multiline
           value={dialogName}
         />
         <TextField

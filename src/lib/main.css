@@ -1,0 +1,67 @@
+.Node---root---R7H7E {
+  stroke: '#000';
+}
+.Node---root---R7H7E .Node---node---oSSfr {
+  fill-opacity: 1;
+  stroke: black !important;
+  stroke-opacity: 0.8;
+}
+.Node---root---R7H7E .Node---node---oSSfr:hover {
+  fill-opacity: 0.8;
+}
+.Link---root---3SCHa .Link---thickLink---20KO4 {
+  stroke: #444444;
+  stroke-opacity: 1;
+  stroke-width: 0;
+  fill: #000000;
+  fill-opacity: 0.2;
+}
+.Link---root---3SCHa .Link---thickLink---20KO4:hover {
+  fill-opacity: 0.4;
+}
+.Link---root---3SCHa .Link---thinLink---1p-Rx {
+  stroke: #000000;
+  stroke-opacity: 0.2;
+  stroke-width: 1;
+  fill: #000000;
+  fill-opacity: 0.2;
+}
+.Link---root---3SCHa .Link---thinLink---1p-Rx:hover {
+  fill-opacity: 0.4;
+  stroke-opacity: 0.3;
+}
+.Link---root---3SCHa .Link---highlightThickLink---2Dk-s {
+  stroke: #444444;
+  stroke-opacity: 1;
+  stroke-width: 0;
+  fill: #000000;
+  fill-opacity: 0.4;
+}
+.Link---root---3SCHa .Link---highlightThinLink---1vidd {
+  stroke: #000000;
+  stroke-width: 1;
+  fill: #000000;
+  fill-opacity: 0.4;
+  stroke-opacity: 0.25;
+}
+.NodeLabel---root---2zHVw .NodeLabel---label---1_k4- {
+  fill: #000;
+  font-size: 10px;
+  cursor: default;
+  text-shadow: #ffffff -1px 1px 1px, #ffffff 1px 1px 1px, #ffffff 1px -1px 1px, #ffffff -1px -1px 1px;
+}
+.SankeyChart---root---1xkqc {
+  padding: 1rem 2rem 0 2rem;
+}
+.SankeyChart---tooltip---3vXGL {
+  border-color: #ccc !important;
+}
+.SankeyChart---tooltip---3vXGL:before {
+  border-color: #ccc transparent !important;
+}
+.SankeyChart---tooltip---3vXGL span {
+  text-align: left !important;
+}
+.SankeyChart---g---UyYwB {
+  padding: 1rem 2rem 0 2rem;
+}
